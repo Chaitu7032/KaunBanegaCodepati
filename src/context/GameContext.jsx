@@ -29,10 +29,13 @@ export function GameProvider({ children, initialRole = "stage" }) {
     }
 
     // 2. Socket.IO connection
+    // If VITE_SERVER_URL environment variable is set (e.g. on Vercel), connect to deployed backend.
+    // Otherwise, connect to port 3001 on local machine / LAN.
     const socketUrl =
-      window.location.port === "3001"
+      import.meta.env.VITE_SERVER_URL ||
+      (window.location.port === "3001"
         ? window.location.origin
-        : `http://${window.location.hostname}:3001`;
+        : `http://${window.location.hostname}:3001`);
 
     const socket = io(socketUrl, {
       transports: ["websocket", "polling"],
