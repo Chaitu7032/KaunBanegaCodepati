@@ -75,32 +75,77 @@ export function GameProvider({ children, initialRole = "stage" }) {
     }
   };
 
-  // High-precision client-side countdown synchronized to server questionEndsAt
+  const clockOffsetRef = useRef(0);
+  const lastSecRef = useRef(null);
+
+  // Synchronize clock offset on every state update from server
   useEffect(() => {
-    if (!gameState) return;
+    if (gameState?.serverTime) {
+      clockOffsetRef.current = gameState.serverTime - Date.now();
+    }
+  }, [gameState?.serverTime]);
 
-    const timer = gameState.timer;
-    if (!timer) return;
+  // Continuous, rock-solid countdown timer
+  useEffect(() => {
+    const timer = gameState?.timer;
+    const status = gameState?.status;
 
+    if (!timer || status === "LOBBY" || status === "FINISHED") {
+      const defaultSecs = timer?.timeLimit || 30;
+      setRemainingSeconds(defaultSecs);
+      lastSecRef.current = defaultSecs;
+      return;
+    }
+
+    if (status === "TIMEOUT") {
+      setRemainingSeconds(0);
+      lastSecRef.current = 0;
+      return;
+    }
+
+    // Paused state: cleanly freeze at exact remaining seconds
     if (timer.isPaused) {
-      setRemainingSeconds(Math.ceil((timer.remainingMs || 0) / 1000));
+      const pausedSecs = Math.max(0, Math.ceil((timer.remainingMs || 0) / 1000));
+      setRemainingSeconds(pausedSecs);
+      lastSecRef.current = pausedSecs;
       return;
     }
 
+    // Stopped/Not running state
     if (!timer.isTimerRunning || !timer.questionEndsAt) {
-      setRemainingSeconds(timer.remainingSeconds || timer.timeLimit || 30);
+      const initSecs = timer.remainingSeconds || timer.timeLimit || 30;
+      setRemainingSeconds(initSecs);
+      lastSecRef.current = initSecs;
       return;
     }
 
-    const interval = setInterval(() => {
-      const now = Date.now();
-      const diff = Math.max(0, timer.questionEndsAt - now);
-      const secs = Math.ceil(diff / 1000);
-      setRemainingSeconds(secs);
-    }, 100);
+    // Running state: calculate from synchronized server clock
+    const updateCountdown = () => {
+      const syncedNow = Date.now() + clockOffsetRef.current;
+      const remainingMs = Math.max(0, timer.questionEndsAt - syncedNow);
+      const currentSec = Math.ceil(remainingMs / 1000);
+
+      if (currentSec !== lastSecRef.current) {
+        lastSecRef.current = currentSec;
+        setRemainingSeconds(currentSec);
+      }
+    };
+
+    // Run immediately once
+    updateCountdown();
+
+    // High frequency interval (50ms) to ensure zero missed seconds and continuous ticking
+    const interval = setInterval(updateCountdown, 50);
 
     return () => clearInterval(interval);
-  }, [gameState]);
+  }, [
+    gameState?.status,
+    gameState?.timer?.isTimerRunning,
+    gameState?.timer?.isPaused,
+    gameState?.timer?.questionEndsAt,
+    gameState?.timer?.timeLimit,
+    gameState?.timer?.remainingMs,
+  ]);
 
   // Command emitters to backend
   const emit = (event, ...args) => {
@@ -126,6 +171,7 @@ export function GameProvider({ children, initialRole = "stage" }) {
   const previousQuestion = () => emit("host:previous_question");
   const jumpQuestion = (index) => emit("host:jump_question", index);
   const startTimer = () => emit("host:start_timer");
+  const restartTimer = () => emit("host:restart_timer");
   const pauseTimer = () => emit("host:pause_timer");
   const resumeTimer = () => emit("host:resume_timer");
   const addTime = (seconds = 15) => emit("host:add_time", seconds);
@@ -189,6 +235,7 @@ export function GameProvider({ children, initialRole = "stage" }) {
         previousQuestion,
         jumpQuestion,
         startTimer,
+        restartTimer,
         pauseTimer,
         resumeTimer,
         addTime,

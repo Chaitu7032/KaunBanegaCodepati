@@ -95,12 +95,17 @@ io.on("connection", (socket) => {
   });
 
   socket.on("host:jump_question", (index) => {
-    engine.setupQuestion(index);
+    engine.setupQuestion(index, true);
     broadcastState();
   });
 
   socket.on("host:start_timer", () => {
     engine.startTimer();
+    broadcastState();
+  });
+
+  socket.on("host:restart_timer", () => {
+    engine.restartTimer();
     broadcastState();
   });
 

@@ -15,6 +15,8 @@ export default function HostDashboard() {
     nextQuestion,
     previousQuestion,
     jumpQuestion,
+    startTimer,
+    restartTimer,
     pauseTimer,
     resumeTimer,
     addTime,
@@ -189,7 +191,15 @@ export default function HostDashboard() {
             ) : (
               <>
                 {/* Timer Control */}
-                {timer.isPaused ? (
+                {!timer.isTimerRunning && !timer.isPaused ? (
+                  <button
+                    type="button"
+                    className="host-btn host-btn--primary"
+                    onClick={startTimer}
+                  >
+                    ▶ START TIMER
+                  </button>
+                ) : timer.isPaused ? (
                   <button
                     type="button"
                     className="host-btn host-btn--primary"
@@ -202,11 +212,19 @@ export default function HostDashboard() {
                     type="button"
                     className="host-btn host-btn--secondary"
                     onClick={pauseTimer}
-                    disabled={!timer.isTimerRunning}
                   >
                     ⏸ PAUSE TIMER
                   </button>
                 )}
+
+                <button
+                  type="button"
+                  className="host-btn host-btn--secondary"
+                  onClick={restartTimer}
+                  title="Reset countdown back to full question time"
+                >
+                  🔄 RESTART TIMER
+                </button>
 
                 <button
                   type="button"

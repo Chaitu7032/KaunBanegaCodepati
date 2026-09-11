@@ -157,7 +157,7 @@ export class GameEngine {
     this.logEvent("GAME_STARTED", { contestant: this.contestantName });
   }
 
-  setupQuestion(index) {
+  setupQuestion(index, autoStartTimer = true) {
     if (index < 0 || index >= this.questions.length) return;
     this.currentQuestionIndex = index;
     const q = this.questions[index];
@@ -166,22 +166,34 @@ export class GameEngine {
     this.lockedOption = null;
     this.isCorrect = null;
     this.eliminatedOptions = [];
-    this.isPaused = false;
-    this.pausedRemainingMs = 0;
-    this.isTimerRunning = false;
-    this.questionStartedAt = null;
-    this.questionEndsAt = null;
     this.status = "QUESTION_ACTIVE";
     this.logEvent("QUESTION_LOADED", { questionNumber: index + 1 });
+
+    if (autoStartTimer) {
+      this.startTimer();
+    } else {
+      this.isPaused = false;
+      this.pausedRemainingMs = this.timeLimit * 1000;
+      this.isTimerRunning = false;
+      this.questionStartedAt = null;
+      this.questionEndsAt = null;
+    }
   }
 
-  startTimer() {
+  startTimer(customLimit) {
+    const limit = customLimit || this.timeLimit;
     const now = Date.now();
+    this.timeLimit = limit;
     this.questionStartedAt = now;
-    this.questionEndsAt = now + this.timeLimit * 1000;
+    this.questionEndsAt = now + limit * 1000;
+    this.pausedRemainingMs = limit * 1000;
     this.isTimerRunning = true;
     this.isPaused = false;
-    this.logEvent("TIMER_STARTED", { timeLimit: this.timeLimit });
+    this.logEvent("TIMER_STARTED", { timeLimit: limit });
+  }
+
+  restartTimer() {
+    this.startTimer(this.timeLimit);
   }
 
   pauseTimer() {
@@ -194,19 +206,27 @@ export class GameEngine {
   }
 
   resumeTimer() {
+    if (!this.isTimerRunning && !this.isPaused) {
+      this.startTimer();
+      return;
+    }
     if (!this.isPaused) return;
     const now = Date.now();
-    this.questionEndsAt = now + this.pausedRemainingMs;
+    const remaining = this.pausedRemainingMs > 0 ? this.pausedRemainingMs : this.timeLimit * 1000;
+    this.questionEndsAt = now + remaining;
     this.isPaused = false;
     this.isTimerRunning = true;
-    this.logEvent("TIMER_RESUMED", { remainingMs: this.pausedRemainingMs });
+    this.logEvent("TIMER_RESUMED", { remainingMs: remaining });
   }
 
   addTime(seconds = 15) {
+    const msToAdd = seconds * 1000;
     if (this.isPaused) {
-      this.pausedRemainingMs += seconds * 1000;
+      this.pausedRemainingMs += msToAdd;
     } else if (this.isTimerRunning && this.questionEndsAt) {
-      this.questionEndsAt += seconds * 1000;
+      this.questionEndsAt += msToAdd;
+    } else {
+      this.pausedRemainingMs = (this.timeLimit + seconds) * 1000;
     }
     this.timeLimit += seconds;
     this.logEvent("TIME_ADDED", { seconds });
@@ -253,8 +273,7 @@ export class GameEngine {
 
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
-      this.setupQuestion(this.currentQuestionIndex + 1);
-      this.startTimer();
+      this.setupQuestion(this.currentQuestionIndex + 1, true);
     } else {
       this.status = "FINISHED";
       this.isTimerRunning = false;
@@ -264,7 +283,7 @@ export class GameEngine {
 
   previousQuestion() {
     if (this.currentQuestionIndex > 0) {
-      this.setupQuestion(this.currentQuestionIndex - 1);
+      this.setupQuestion(this.currentQuestionIndex - 1, true);
     }
   }
 
