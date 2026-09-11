@@ -9,8 +9,8 @@
 // without also updating the labels below.
 // ============================================================
 
-export const MENTI_LINK_1 = "https://www.menti.com/REPLACE_ME_1";
-export const MENTI_LINK_2 = "https://www.menti.com/REPLACE_ME_2";
+export const MENTI_LINK_1 = "https://www.menti.com/alzazwjg7y2g";
+export const MENTI_LINK_2 = "https://www.menti.com/al612jdn2rim";
 export const MENTI_LINK_3 = "https://www.menti.com/REPLACE_ME_3";
 export const MENTI_LINK_4 = "https://www.menti.com/REPLACE_ME_4";
 
