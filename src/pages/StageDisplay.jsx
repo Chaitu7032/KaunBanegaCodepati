@@ -186,7 +186,7 @@ export default function StageDisplay() {
             {/* Question Box */}
             <div className="stage-question-card">
               <span className="stage-question-card__eyebrow">
-                ROUND {q?.round || 1} &bull; QUESTION {q?.questionNumber || 1}
+                {q?.category ? `${q.category.toUpperCase()} • ` : ""}ROUND {q?.round || 1} &bull; QUESTION {q?.questionNumber || 1}
               </span>
               <h2 className="stage-question-card__text">
                 {q?.questionText || "Loading question..."}

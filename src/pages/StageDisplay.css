@@ -266,12 +266,13 @@
 
 .stage-question-card__text {
   font-family: var(--font-display);
-  font-size: clamp(1.25rem, 2.2vw, 1.85rem);
+  font-size: clamp(1.15rem, 1.8vw, 1.65rem);
   font-weight: 600;
   line-height: 1.45;
   color: #fff;
   margin: 0;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  white-space: pre-wrap;
 }
 
 /* 4 Options Grid */

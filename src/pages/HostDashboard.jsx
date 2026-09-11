@@ -125,7 +125,7 @@ export default function HostDashboard() {
                 QUESTION PREVIEW (HOST PRIVATE VIEW)
               </div>
               <div style={{ fontSize: "0.8rem", color: "var(--gold-300)" }}>
-                ROUND {q?.round || 1} &bull; VALUE: {q?.prizeValue || "₹1,000"}
+                {q?.category ? `${q.category} • ` : ""}ROUND {q?.round || 1} &bull; VALUE: {q?.prizeValue || "₹50"}
               </div>
             </div>
 

@@ -104,6 +104,7 @@ export class GameEngine {
         questionNumber: q.questionNumber || this.currentQuestionIndex + 1,
         totalQuestions: this.questions.length,
         round: q.round || 1,
+        category: q.category || null,
         questionText: q.questionText,
         options: q.options.map((opt) => ({
           id: opt.id,
