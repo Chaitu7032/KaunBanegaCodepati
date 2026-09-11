@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import Starfield from "../components/Starfield";
-import { MENTI_ROOMS } from "../config/mentiLinks";
 
 export default function JoinQuiz() {
   const navigate = useNavigate();
@@ -10,7 +9,6 @@ export default function JoinQuiz() {
       <Starfield density={50} />
 
       <div className="container join-page__inner">
-
         <button
           type="button"
           className="join-page__back"
@@ -20,59 +18,73 @@ export default function JoinQuiz() {
         </button>
 
         <header className="join-page__header">
-          <p className="eyebrow">
-            KAUN BANEGA CODEPATHI
-          </p>
+          <p className="eyebrow">KAUN BANEGA CODEPATHI</p>
 
           <h1 className="join-page__title gold-text">
-            JOIN THE LIVE QUIZ
+            LIVE BROADCAST PORTAL
           </h1>
 
           <p className="join-page__subtitle">
-            Choose any available Mentimeter room below.
+            Connect your screens for the live television-style quiz experience.
           </p>
 
           <p className="join-page__hint">
-            If one room is full, simply choose another room.
+            Laptop A runs the Host Control Deck. Laptop B / Projector displays the Stage Arena.
           </p>
         </header>
 
-        <div className="join-page__rooms">
-          {MENTI_ROOMS.map((room) => (
-            <a
-              key={room.id}
-              href={room.url}
-              className="join-room"
-              aria-label={`${room.label} — ${room.cta}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span
-                className="join-room__ring"
-                aria-hidden="true"
-              >
-                {String(room.id).padStart(2, "0")}
-              </span>
+        <div className="join-page__rooms" style={{ maxWidth: "800px", margin: "0 auto" }}>
+          {/* STAGE SCREEN CARD */}
+          <div
+            className="join-room"
+            role="button"
+            tabIndex={0}
+            onClick={() => navigate("/play")}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/play")}
+            aria-label="Launch Stage Screen"
+            style={{ cursor: "pointer" }}
+          >
+            <span className="join-room__ring" aria-hidden="true">
+              01
+            </span>
 
-              <span className="join-room__label eyebrow">
-                {room.label}
-              </span>
+            <span className="join-room__label eyebrow">STAGE DISPLAY</span>
 
-              <span className="join-room__status">
-                LIVE ROOM
-              </span>
+            <span className="join-room__status">PROJECTOR / HOT SEAT</span>
 
-              <span className="join-room__cta gold-text">
-                {room.cta} →
-              </span>
-            </a>
-          ))}
+            <span className="join-room__cta gold-text">
+              LAUNCH STAGE SCREEN →
+            </span>
+          </div>
+
+          {/* HOST DECK CARD */}
+          <div
+            className="join-room"
+            role="button"
+            tabIndex={0}
+            onClick={() => navigate("/host")}
+            onKeyDown={(e) => e.key === "Enter" && navigate("/host")}
+            aria-label="Open Host Deck"
+            style={{ cursor: "pointer" }}
+          >
+            <span className="join-room__ring" aria-hidden="true">
+              02
+            </span>
+
+            <span className="join-room__label eyebrow">HOST CONSOLE</span>
+
+            <span className="join-room__status">QUIZ MASTER DESK</span>
+
+            <span className="join-room__cta gold-text">
+              OPEN HOST DECK →
+            </span>
+          </div>
         </div>
 
         <div className="join-page__footer-note">
-          <span>4 ROOMS</span>
+          <span>DUAL SCREEN BROADCAST</span>
           <span>•</span>
-          <span>ONE LIVE QUIZ</span>
+          <span>REAL-TIME SYNCHRONIZED</span>
         </div>
       </div>
     </div>

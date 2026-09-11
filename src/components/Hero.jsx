@@ -74,19 +74,19 @@ export default function Hero() {
 
           </div>
 
-          {/* MAIN JOIN QUIZ BUTTON */}
+          {/* MAIN ENTER GAME BUTTON */}
           <div className="hero__cta-wrap">
             <button
               type="button"
               className="hero__join-btn"
-              onClick={() => navigate("/join")}
+              onClick={() => navigate("/play")}
             >
               <span className="hero__join-btn-main">
-                JOIN THE QUIZ →
+                ENTER CODEPATHI →
               </span>
 
               <span className="hero__join-btn-sub">
-                LIVE ON MENTIMETER
+                LIVE ARENA
               </span>
             </button>
           </div>

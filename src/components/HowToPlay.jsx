@@ -114,13 +114,13 @@ export default function HowToPlay() {
             <p>
               Round 1 is a fast-paced{" "}
               <strong>Fastest Fingers First</strong> challenge
-              conducted through <strong>Mentimeter</strong>.
+              conducted through the <strong>Codepathi Live Arena</strong>.
             </p>
 
             <p>
               Participants answer questions as quickly and accurately
               as possible. Every correctly answered question contributes
-              points to the participant's Mentimeter leaderboard tally.
+              points to the official live leaderboard tally.
             </p>
 
           </div>

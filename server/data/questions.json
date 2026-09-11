@@ -1,0 +1,257 @@
+[
+  {
+    "id": 1,
+    "questionNumber": 1,
+    "round": 1,
+    "questionText": "Which of the following data structures follows the LIFO (Last In, First Out) principle?",
+    "options": [
+      { "id": "A", "text": "Queue" },
+      { "id": "B", "text": "Stack" },
+      { "id": "C", "text": "Linked List" },
+      { "id": "D", "text": "Array" }
+    ],
+    "correctOption": "B",
+    "timeLimit": 30,
+    "prizeValue": "₹50",
+    "milestone": null,
+    "explanation": "A Stack works on the Last In First Out (LIFO) principle."
+  },
+  {
+    "id": 2,
+    "questionNumber": 2,
+    "round": 1,
+    "questionText": "What does CSS stand for in web development?",
+    "options": [
+      { "id": "A", "text": "Creative Style Sheets" },
+      { "id": "B", "text": "Computer Style Sheets" },
+      { "id": "C", "text": "Cascading Style Sheets" },
+      { "id": "D", "text": "Colorful Style Sheets" }
+    ],
+    "correctOption": "C",
+    "timeLimit": 30,
+    "prizeValue": "₹100",
+    "milestone": null,
+    "explanation": "CSS stands for Cascading Style Sheets."
+  },
+  {
+    "id": 3,
+    "questionNumber": 3,
+    "round": 1,
+    "questionText": "In JavaScript, which keyword declares a block-scoped variable that cannot be reassigned?",
+    "options": [
+      { "id": "A", "text": "var" },
+      { "id": "B", "text": "let" },
+      { "id": "C", "text": "const" },
+      { "id": "D", "text": "static" }
+    ],
+    "correctOption": "C",
+    "timeLimit": 30,
+    "prizeValue": "₹150",
+    "milestone": null,
+    "explanation": "const creates block-scoped immutable bindings."
+  },
+  {
+    "id": 4,
+    "questionNumber": 4,
+    "round": 1,
+    "questionText": "What is the worst-case time complexity of standard QuickSort?",
+    "options": [
+      { "id": "A", "text": "O(n log n)" },
+      { "id": "B", "text": "O(n²)" },
+      { "id": "C", "text": "O(n)" },
+      { "id": "D", "text": "O(log n)" }
+    ],
+    "correctOption": "B",
+    "timeLimit": 30,
+    "prizeValue": "₹200",
+    "milestone": null,
+    "explanation": "When pivot selection is poor, QuickSort degenerates to O(n²)."
+  },
+  {
+    "id": 5,
+    "questionNumber": 5,
+    "round": 1,
+    "questionText": "Which Git command is used to record changes to the repository?",
+    "options": [
+      { "id": "A", "text": "git commit" },
+      { "id": "B", "text": "git push" },
+      { "id": "C", "text": "git add" },
+      { "id": "D", "text": "git branch" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 45,
+    "prizeValue": "₹300",
+    "milestone": "SAFE ZONE 1",
+    "explanation": "git commit takes staged changes and creates a new commit object."
+  },
+  {
+    "id": 6,
+    "questionNumber": 6,
+    "round": 1,
+    "questionText": "Which HTTP status code signifies '401 Unauthorized'?",
+    "options": [
+      { "id": "A", "text": "Authentication credentials missing or invalid" },
+      { "id": "B", "text": "Resource forbidden even with credentials" },
+      { "id": "C", "text": "Internal Server Error" },
+      { "id": "D", "text": "Page Not Found" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 45,
+    "prizeValue": "₹400",
+    "milestone": null,
+    "explanation": "401 specifically indicates missing or bad authentication."
+  },
+  {
+    "id": 7,
+    "questionNumber": 7,
+    "round": 1,
+    "questionText": "What is the primary function of a database foreign key constraint?",
+    "options": [
+      { "id": "A", "text": "Ensure referential integrity between tables" },
+      { "id": "B", "text": "Index the table for speed" },
+      { "id": "C", "text": "Prevent duplicate rows" },
+      { "id": "D", "text": "Encrypt table data" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 45,
+    "prizeValue": "₹500",
+    "milestone": null,
+    "explanation": "Foreign keys enforce referential integrity across related tables."
+  },
+  {
+    "id": 8,
+    "questionNumber": 8,
+    "round": 1,
+    "questionText": "In Python, which built-in data type is mutable and ordered?",
+    "options": [
+      { "id": "A", "text": "tuple" },
+      { "id": "B", "text": "list" },
+      { "id": "C", "text": "set" },
+      { "id": "D", "text": "frozenset" }
+    ],
+    "correctOption": "B",
+    "timeLimit": 45,
+    "prizeValue": "₹600",
+    "milestone": null,
+    "explanation": "Python lists are ordered sequences that can be modified in-place."
+  },
+  {
+    "id": 9,
+    "questionNumber": 9,
+    "round": 1,
+    "questionText": "Which protocol operates at the Transport Layer of the OSI model?",
+    "options": [
+      { "id": "A", "text": "TCP" },
+      { "id": "B", "text": "IP" },
+      { "id": "C", "text": "HTTP" },
+      { "id": "D", "text": "Ethernet" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 45,
+    "prizeValue": "₹800",
+    "milestone": null,
+    "explanation": "TCP and UDP are Transport Layer (Layer 4) protocols."
+  },
+  {
+    "id": 10,
+    "questionNumber": 10,
+    "round": 2,
+    "questionText": "What technique prevents SQL Injection vulnerabilities most effectively?",
+    "options": [
+      { "id": "A", "text": "Parameterized Queries (Prepared Statements)" },
+      { "id": "B", "text": "Client-side Regex Filtering" },
+      { "id": "C", "text": "Base64 Encoding query parameters" },
+      { "id": "D", "text": "Hashing inputs with MD5" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹1,000",
+    "milestone": "SAFE ZONE 2",
+    "explanation": "Parameterized queries separate SQL code from user-supplied data."
+  },
+  {
+    "id": 11,
+    "questionNumber": 11,
+    "round": 2,
+    "questionText": "Which algorithmic design paradigm does Dijkstra's shortest path algorithm utilize?",
+    "options": [
+      { "id": "A", "text": "Greedy Approach" },
+      { "id": "B", "text": "Divide and Conquer" },
+      { "id": "C", "text": "Backtracking" },
+      { "id": "D", "text": "Branch and Bound" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹1,300",
+    "milestone": null,
+    "explanation": "Dijkstra picks the closest unvisited vertex greedily at every step."
+  },
+  {
+    "id": 12,
+    "questionNumber": 12,
+    "round": 2,
+    "questionText": "In Linux file permissions, what numerical mode gives read, write, and execute to owner, and read to everyone else?",
+    "options": [
+      { "id": "A", "text": "744" },
+      { "id": "B", "text": "755" },
+      { "id": "C", "text": "777" },
+      { "id": "D", "text": "644" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹1,600",
+    "milestone": null,
+    "explanation": "7 is rwx (4+2+1), 4 is r-- (4+0+0)."
+  },
+  {
+    "id": 13,
+    "questionNumber": 13,
+    "round": 2,
+    "questionText": "Which concurrency mechanism is used to avoid deadlocks by ensuring a strict order of resource acquisition?",
+    "options": [
+      { "id": "A", "text": "Resource Hierarchy / Lock Ordering" },
+      { "id": "B", "text": "Spinlocks" },
+      { "id": "C", "text": "Busy Waiting" },
+      { "id": "D", "text": "Round Robin Scheduling" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹2,000",
+    "milestone": null,
+    "explanation": "Imposing a total ordering on lock acquisition eliminates circular wait conditions."
+  },
+  {
+    "id": 14,
+    "questionNumber": 14,
+    "round": 2,
+    "questionText": "In modern CPU architecture, what does the 'Spectre' vulnerability exploit?",
+    "options": [
+      { "id": "A", "text": "Speculative Execution and Branch Prediction side-channels" },
+      { "id": "B", "text": "RAM Row Hammering" },
+      { "id": "C", "text": "Buffer Overflows in BIOS" },
+      { "id": "D", "text": "Unencrypted PCIe bus traffic" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹2,800",
+    "milestone": null,
+    "explanation": "Spectre abuses speculative execution leaks via CPU cache timing."
+  },
+  {
+    "id": 15,
+    "questionNumber": 15,
+    "round": 2,
+    "questionText": "What does CAP Theorem state is impossible for a distributed data store to provide simultaneously?",
+    "options": [
+      { "id": "A", "text": "More than two of: Consistency, Availability, Partition tolerance" },
+      { "id": "B", "text": "Concurrency, Atomicity, Persistence" },
+      { "id": "C", "text": "Caching, Authentication, Performance" },
+      { "id": "D", "text": "Capacity, Accuracy, Parallelism" }
+    ],
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹4,000",
+    "milestone": "GRAND PRIZE",
+    "explanation": "Brewer's CAP theorem states that any distributed system can guarantee at most two of the three: Consistency, Availability, and Partition Tolerance."
+  }
+]

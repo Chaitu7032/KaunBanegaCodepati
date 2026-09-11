@@ -150,10 +150,10 @@ export default function Navbar() {
             className="btn-gold navbar__mobile-cta"
             onClick={() => {
               setMenuOpen(false);
-              navigate("/join");
+              navigate("/play");
             }}
           >
-            JOIN THE QUIZ — LIVE ON MENTIMETER
+            ENTER CODEPATHI — LIVE ARENA
           </button>
         </nav>
       )}
@@ -162,15 +162,15 @@ export default function Navbar() {
     <button
   type="button"
   className="floating-join"
-  onClick={() => navigate("/join")}
-  aria-label="Join the live quiz"
+  onClick={() => navigate("/play")}
+  aria-label="Enter live Codepathi arena"
 >
   <span className="floating-join__main">
-    JOIN THE QUIZ
+    ENTER CODEPATHI
   </span>
 
   <span className="floating-join__sub">
-    LIVE ON MENTIMETER
+    LIVE ARENA
   </span>
 </button>
   </>

@@ -1,0 +1,357 @@
+/* ============================================================
+   KAUN BANEGA CODEPATHI — HOST CONTROL DECK
+   Television broadcast control center
+   ============================================================ */
+
+.host-view {
+  min-height: 100vh;
+  background: #060b1a;
+  color: var(--ink-100);
+  font-family: var(--font-body);
+  display: flex;
+  flex-direction: column;
+}
+
+/* Host Top Bar */
+.host-navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 2rem;
+  background: #04070f;
+  border-bottom: 2px solid rgba(217, 173, 75, 0.4);
+}
+
+.host-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.host-brand h1 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin: 0;
+  color: var(--gold-300);
+  letter-spacing: 0.08em;
+}
+
+.host-badge-live {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid #ef4444;
+  color: #ef4444;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+}
+
+.host-badge-live span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ef4444;
+  animation: pulse-dot 1s infinite alternate;
+}
+
+@keyframes pulse-dot {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+.host-connection {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.host-connection--on { color: #10b981; }
+.host-connection--off { color: #ef4444; }
+
+/* Dashboard Grid */
+.host-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 1.5rem;
+  padding: 1.5rem 2rem;
+  max-width: 1700px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* Status Cards Row */
+.host-telemetry-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.host-card {
+  background: rgba(16, 28, 66, 0.5);
+  border: 1px solid rgba(217, 173, 75, 0.25);
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+}
+
+.host-card__label {
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--gold-300);
+  margin-bottom: 0.35rem;
+}
+
+.host-card__value {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.host-card__value--status {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: #63b8ff;
+}
+
+/* Center Question Preview Deck */
+.host-preview-deck {
+  background: rgba(10, 19, 48, 0.85);
+  border: 1.5px solid rgba(217, 173, 75, 0.35);
+  border-radius: 14px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.host-preview-deck__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.host-preview-deck__title {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  color: var(--gold-300);
+}
+
+.host-question-text {
+  font-size: 1.2rem;
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  color: #fff;
+}
+
+.host-options-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.host-option-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background: rgba(6, 11, 26, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  font-size: 0.9rem;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.host-option-item:hover {
+  border-color: var(--gold-300);
+}
+
+.host-option-item--correct {
+  border: 2px solid #10b981 !important;
+  background: rgba(16, 185, 129, 0.2) !important;
+}
+
+.host-option-item--selected {
+  border-color: #f59e0b;
+  background: rgba(245, 158, 11, 0.2);
+}
+
+.host-option-item--locked {
+  border: 2px solid #f59e0b !important;
+  background: rgba(245, 158, 11, 0.35) !important;
+}
+
+.host-option-item__badge {
+  font-weight: 800;
+  margin-right: 0.75rem;
+  color: var(--gold-300);
+}
+
+.host-correct-tag {
+  margin-left: auto;
+  font-size: 0.7rem;
+  font-weight: 800;
+  background: #10b981;
+  color: #000;
+  padding: 0.15rem 0.45rem;
+  border-radius: 4px;
+}
+
+.host-explanation {
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  background: rgba(16, 28, 66, 0.5);
+  border-left: 3px solid var(--gold-500);
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-300);
+}
+
+/* Host Action Controls Deck */
+.host-actions-deck {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  margin-bottom: 1.5rem;
+}
+
+.host-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.9rem 1.2rem;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.host-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  filter: grayscale(1);
+}
+
+.host-btn--primary {
+  background: linear-gradient(135deg, #f3d989 0%, #d9ad4b 100%);
+  color: #04070f;
+  box-shadow: 0 4px 15px rgba(217, 173, 75, 0.3);
+}
+
+.host-btn--primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(217, 173, 75, 0.5);
+}
+
+.host-btn--secondary {
+  background: rgba(16, 28, 66, 0.8);
+  border: 1px solid rgba(217, 173, 75, 0.4);
+  color: var(--gold-100);
+}
+
+.host-btn--secondary:hover:not(:disabled) {
+  background: rgba(23, 42, 92, 1);
+  border-color: var(--gold-300);
+}
+
+.host-btn--success {
+  background: #10b981;
+  color: #000;
+}
+
+.host-btn--danger {
+  background: rgba(239, 68, 68, 0.2);
+  border: 1px solid #ef4444;
+  color: #f87171;
+}
+
+.host-btn--danger:hover:not(:disabled) {
+  background: #ef4444;
+  color: #fff;
+}
+
+/* Sidebar Sections */
+.host-sidebar-panel {
+  background: rgba(10, 19, 48, 0.8);
+  border: 1px solid rgba(217, 173, 75, 0.25);
+  border-radius: 14px;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.host-sidebar-panel__title {
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  color: var(--gold-300);
+  margin-bottom: 0.85rem;
+  text-transform: uppercase;
+}
+
+/* Lifelines Control Row */
+.host-lifelines-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.host-lifeline-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.85rem;
+  background: rgba(6, 11, 26, 0.7);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.host-btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  border: 1px solid var(--gold-500);
+  background: rgba(217, 173, 75, 0.2);
+  color: var(--gold-100);
+}
+
+.host-btn-sm:hover:not(:disabled) {
+  background: var(--gold-500);
+  color: #000;
+}
+
+/* Contestant Input Field */
+.host-input {
+  width: 100%;
+  padding: 0.65rem 0.85rem;
+  background: rgba(4, 7, 15, 0.8);
+  border: 1px solid rgba(217, 173, 75, 0.3);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.host-input:focus {
+  border-color: var(--gold-300);
+}
+
+@media (max-width: 1024px) {
+  .host-grid {
+    grid-template-columns: 1fr;
+  }
+}
