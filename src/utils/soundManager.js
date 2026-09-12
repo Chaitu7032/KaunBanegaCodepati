@@ -13,40 +13,39 @@ class SoundManager {
     this.isMuted = false;
     this.isUnlocked = false;
 
-    // Normalization table for audio files (supports all common casings and naming variants)
+    // Normalization table for audio files (exact existing files placed first for zero latency)
     this.soundPaths = {
       countdown45: [
         "/audio/KBC_Count_down_45sec.mp3",
+        "/audio/KBC_Count_down.mp3",
         "/audio/kbc_count_down_45sec.mp3",
-        "/audio/KBC_COUNT_DOWN_45sec.mp3",
         "/audio/45sec.mp3",
       ],
       countdown60: [
+        "/audio/KBC_Count_down_60sec.mp3",
         "/audio/KBC_COUNT_DOWN_60 sec.mp3",
         "/audio/KBC_COUNT_DOWN_60sec.mp3",
-        "/audio/KBC_Count_down_60sec.mp3",
         "/audio/60sec.mp3",
       ],
       lockIn: [
-        "/audio/kbc_answer_locked-in.mp3",
-        "/audio/kbc_answer_locked-in.mp-3",
         "/audio/kbc-answer-locked-in.mp3",
+        "/audio/kbc_answer_locked-in.mp3",
         "/audio/lock-in.mp3",
       ],
       suspense: [
         "/audio/kbc-suspense.mp3",
         "/audio/kbc_suspense.mp3",
+        "/audio/kbc-question-theme.mp3",
         "/audio/suspense.mp3",
       ],
       rightAnswer: [
         "/audio/kbc-right-answer.mp3",
-        "/audio/kbc-right-answer.mp-3",
+        "/audio/7-crore-kbc.mp3",
         "/audio/kbc_right_answer.mp3",
         "/audio/right-answer.mp3",
       ],
       wrongAnswer: [
         "/audio/kbc-wrong-answer.mp3",
-        "/audio/kbc-wrong-answer.mp-3",
         "/audio/kbc_wrong_answer.mp3",
         "/audio/wrong-answer.mp3",
       ],

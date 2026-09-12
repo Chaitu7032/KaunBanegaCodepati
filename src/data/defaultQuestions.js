@@ -3,450 +3,450 @@ export const DEFAULT_QUESTIONS = [
     "id": 1,
     "questionNumber": 1,
     "round": 1,
-    "category": "Java",
-    "questionText": "What is the output of the following Java code?\n\nint a = 10;\nint b = 3;\nSystem.out.println(a / b);",
+    "category": "Python",
+    "questionText": "What is the output of the following Python code?\n\nprint(type([]))",
     "options": [
       {
         "id": "A",
-        "text": "3.33"
+        "text": "<class 'list'>"
       },
       {
         "id": "B",
-        "text": "3"
+        "text": "<class 'array'>"
       },
       {
         "id": "C",
-        "text": "4"
+        "text": "<class 'object'>"
       },
       {
         "id": "D",
-        "text": "3.0"
+        "text": "<class 'tuple'>"
       }
     ],
-    "correctOption": "B",
+    "correctOption": "A",
     "timeLimit": 45,
     "prizeValue": "₹50",
     "milestone": null,
-    "explanation": "Both operands are integers, so Java performs integer division. The result is 3."
+    "explanation": "In Python, empty square brackets [] create an instance of the built-in list class. type([]) returns <class 'list'>."
   },
   {
     "id": 2,
     "questionNumber": 2,
     "round": 1,
     "category": "Java",
-    "questionText": "What is the output of this Java program?\n\nString s1 = \"Code\";\nString s2 = new String(\"Code\");\nSystem.out.println(s1 == s2);",
+    "questionText": "Which primitive data type in Java is used to store a single 16-bit Unicode character?",
     "options": [
       {
         "id": "A",
-        "text": "true"
+        "text": "byte"
       },
       {
         "id": "B",
-        "text": "false"
+        "text": "short"
       },
       {
         "id": "C",
-        "text": "Code"
+        "text": "char"
       },
       {
         "id": "D",
-        "text": "Compilation error"
+        "text": "String"
       }
     ],
-    "correctOption": "B",
+    "correctOption": "C",
     "timeLimit": 45,
     "prizeValue": "₹100",
     "milestone": null,
-    "explanation": "The == operator compares object references. These strings are different objects, so the result is false."
+    "explanation": "In Java, char is a 16-bit unsigned primitive integer type capable of storing Unicode characters from '\\u0000' to '\\uffff'. String is a class, not a primitive."
   },
   {
     "id": 3,
     "questionNumber": 3,
     "round": 1,
-    "category": "OOP",
-    "questionText": "Which OOP concept allows a child class to provide its own implementation of a method already defined in the parent class?",
+    "category": "General Knowledge",
+    "questionText": "Who is recognized in computing history as the inventor of the World Wide Web (WWW) in 1989 at CERN?",
     "options": [
       {
         "id": "A",
-        "text": "Encapsulation"
+        "text": "Steve Jobs"
       },
       {
         "id": "B",
-        "text": "Inheritance"
+        "text": "Tim Berners-Lee"
       },
       {
         "id": "C",
-        "text": "Method overriding"
+        "text": "Bill Gates"
       },
       {
         "id": "D",
-        "text": "Abstraction"
+        "text": "Vint Cerf"
       }
     ],
-    "correctOption": "C",
+    "correctOption": "B",
     "timeLimit": 45,
     "prizeValue": "₹150",
     "milestone": null,
-    "explanation": "Method overriding allows a child class to redefine a method inherited from its parent class."
+    "explanation": "Sir Tim Berners-Lee invented the World Wide Web in 1989 while working at CERN, designing HTML, HTTP, and the first web browser."
   },
   {
     "id": 4,
     "questionNumber": 4,
     "round": 1,
-    "category": "Python",
-    "questionText": "Which of the following Python data types is immutable?",
+    "category": "Science",
+    "questionText": "In fiber-optic telecommunications, which physical principle allows light signals to transmit over long distances with minimal loss?",
     "options": [
       {
         "id": "A",
-        "text": "List"
+        "text": "Total Internal Reflection"
       },
       {
         "id": "B",
-        "text": "Dictionary"
+        "text": "Wave Diffraction"
       },
       {
         "id": "C",
-        "text": "Set"
+        "text": "Photoelectric Absorption"
       },
       {
         "id": "D",
-        "text": "Tuple"
+        "text": "Quantum Tunneling"
       }
     ],
-    "correctOption": "D",
+    "correctOption": "A",
     "timeLimit": 45,
     "prizeValue": "₹200",
     "milestone": null,
-    "explanation": "A tuple is immutable, meaning its elements cannot be changed after the tuple is created."
+    "explanation": "Total Internal Reflection (TIR) occurs when light traveling in an optically dense core strikes the cladding at an angle greater than the critical angle, continuously bouncing the light along the fiber."
   },
   {
     "id": 5,
     "questionNumber": 5,
     "round": 1,
-    "category": "Python",
-    "questionText": "Which of the following is a distinctive feature of Python that makes its code easier to read?",
+    "category": "Who Am I?",
+    "questionText": "\"I was created in 1991 by Dutch programmer Guido van Rossum. My core design philosophy is summarized in PEP 20 with the motto: 'There should be one—and preferably only one—obvious way to do it.' Who am I?\"",
     "options": [
       {
         "id": "A",
-        "text": "It requires every variable to be declared with a data type."
+        "text": "Python"
       },
       {
         "id": "B",
-        "text": "It uses indentation to define blocks of code."
+        "text": "Ruby"
       },
       {
         "id": "C",
-        "text": "It does not support functions."
+        "text": "Perl"
       },
       {
         "id": "D",
-        "text": "It can only run on Linux."
+        "text": "PHP"
       }
     ],
-    "correctOption": "B",
+    "correctOption": "A",
     "timeLimit": 45,
     "prizeValue": "₹300",
     "milestone": "SAFE ZONE 1",
-    "explanation": "Python uses indentation to define code blocks, making program structure visually clear."
+    "explanation": "Guido van Rossum released Python in 1991. The Zen of Python emphasizes simplicity, readability, and having one obvious way to solve problems."
   },
   {
     "id": 6,
     "questionNumber": 6,
     "round": 1,
-    "category": "DSA / Sliding Window",
-    "questionText": "Given an array of integers, what is the best time complexity to find the maximum sum of any subarray of size K?",
+    "category": "DSA",
+    "questionText": "What is the worst-case time complexity of searching for an element in a balanced Binary Search Tree (such as an AVL or Red-Black Tree) containing N nodes?",
     "options": [
       {
         "id": "A",
-        "text": "O(n²)"
+        "text": "O(1)"
       },
       {
         "id": "B",
-        "text": "O(n)"
+        "text": "O(log N)"
       },
       {
         "id": "C",
-        "text": "O(n log n)"
+        "text": "O(N)"
       },
       {
         "id": "D",
-        "text": "O(k log n)"
+        "text": "O(N log N)"
       }
     ],
     "correctOption": "B",
     "timeLimit": 60,
     "prizeValue": "₹400",
     "milestone": null,
-    "explanation": "Using the sliding window technique, the subarray sum can be updated in O(1) time per step, yielding an overall O(n) time complexity."
+    "explanation": "In balanced BSTs like AVL and Red-Black trees, self-balancing rotations ensure tree height h is strictly bounded by O(log N), giving search, insert, and delete a worst-case time complexity of O(log N)."
   },
   {
     "id": 7,
     "questionNumber": 7,
     "round": 1,
-    "category": "Python History",
-    "questionText": "Which of the following is a fun fact about Python?",
+    "category": "Java",
+    "questionText": "What is the output of the following Java program?\n\nString s1 = \"Java\";\nString s2 = \"Ja\" + \"va\";\nString s3 = new String(\"Java\");\nSystem.out.println((s1 == s2) + \" \" + (s1 == s3));",
     "options": [
       {
         "id": "A",
-        "text": "Python was named after a type of snake."
+        "text": "true true"
       },
       {
         "id": "B",
-        "text": "Python was named after the British comedy group Monty Python."
+        "text": "true false"
       },
       {
         "id": "C",
-        "text": "Python was originally developed by Google."
+        "text": "false true"
       },
       {
         "id": "D",
-        "text": "Python was created as a replacement for Java."
+        "text": "false false"
       }
     ],
     "correctOption": "B",
     "timeLimit": 60,
     "prizeValue": "₹500",
     "milestone": null,
-    "explanation": "Python was named after the comedy series Monty Python’s Flying Circus."
+    "explanation": "Compile-time constant string expressions (\"Ja\" + \"va\") are interned in the String Pool, making s1 == s2 true. Calling new String(\"Java\") creates an explicit object on the heap, so s1 == s3 compares different memory references and yields false."
   },
   {
     "id": 8,
     "questionNumber": 8,
     "round": 1,
-    "category": "AI",
-    "questionText": "In the term “ChatGPT”, what does the acronym GPT stand for?",
+    "category": "Trivia",
+    "questionText": "Why is the term 'computer bug' historically famous in association with Grace Hopper and the Harvard Mark II computer in 1947?",
     "options": [
       {
         "id": "A",
-        "text": "Generative Pre-trained Transformer"
+        "text": "A real moth was discovered trapped in a relay, causing an electrical fault"
       },
       {
         "id": "B",
-        "text": "Generative Predictive Transformer"
+        "text": "A beetle severed a wire inside the magnetic core memory array"
       },
       {
         "id": "C",
-        "text": "General Pre-trained Transformer"
+        "text": "A programmer nicknamed 'The Bug' committed the first compiler error"
       },
       {
         "id": "D",
-        "text": "Generative Processing Technology"
+        "text": "Ants nested inside vacuum tubes, causing thermal shutdown"
       }
     ],
     "correctOption": "A",
     "timeLimit": 60,
     "prizeValue": "₹600",
     "milestone": null,
-    "explanation": "GPT stands for Generative Pre-trained Transformer: a model that generates text using a transformer architecture."
+    "explanation": "On September 9, 1947, engineers debugging the Harvard Mark II discovered an actual moth trapped between relay points. Grace Hopper's team taped it into their logbook as 'First actual case of bug being found'."
   },
   {
     "id": 9,
     "questionNumber": 9,
     "round": 1,
-    "category": "Java",
-    "questionText": "In Java, which keyword is used to prevent a class from being inherited?",
+    "category": "Python",
+    "questionText": "What will be printed by the following Python code?\n\ndef append_item(val, item_list=[]):\n    item_list.append(val)\n    return item_list\n\na = append_item(1)\nb = append_item(2, [])\nc = append_item(3)\nprint(a, c)",
     "options": [
       {
         "id": "A",
-        "text": "static"
+        "text": "[1] [3]"
       },
       {
         "id": "B",
-        "text": "private"
+        "text": "[1, 3] [1, 3]"
       },
       {
         "id": "C",
-        "text": "final"
+        "text": "[1, 2, 3] [1, 2, 3]"
       },
       {
         "id": "D",
-        "text": "abstract"
+        "text": "[1] [1, 3]"
       }
     ],
-    "correctOption": "C",
+    "correctOption": "B",
     "timeLimit": 60,
     "prizeValue": "₹800",
     "milestone": null,
-    "explanation": "A class declared final cannot be extended or inherited by another class."
+    "explanation": "Default argument expressions in Python are evaluated once when the function is defined, NOT at invocation. The mutable default list item_list is shared across calls that don't supply a second argument. Call 1 appends 1; call 2 uses a fresh list []; call 3 appends 3 to the shared default list. Both a and c point to this same list: [1, 3]."
   },
   {
     "id": 10,
     "questionNumber": 10,
-    "round": 2,
-    "category": "Python",
-    "questionText": "What is the output of the following Python code?\n\na = [1, 2, 3]\nb = a[:]\nb.append(4)\n\nprint(a)\nprint(b)",
+    "round": 1,
+    "category": "Java",
+    "questionText": "What will the following Java code print?\n\nInteger a = 127;\nInteger b = 127;\nInteger c = 128;\nInteger d = 128;\nSystem.out.println((a == b) + \" \" + (c == d));",
     "options": [
       {
         "id": "A",
-        "text": "[1, 2, 3] and [1, 2, 3, 4]"
+        "text": "true true"
       },
       {
         "id": "B",
-        "text": "[1, 2, 3, 4] and [1, 2, 3, 4]"
+        "text": "true false"
       },
       {
         "id": "C",
-        "text": "[1, 2, 3, 4] and [4]"
+        "text": "false false"
       },
       {
         "id": "D",
-        "text": "Error"
+        "text": "false true"
       }
     ],
-    "correctOption": "A",
+    "correctOption": "B",
     "timeLimit": 60,
     "prizeValue": "₹1,000",
     "milestone": "SAFE ZONE 2",
-    "explanation": "The slice a[:] creates a new list. Therefore, appending to b does not change a."
+    "explanation": "The JVM maintains an IntegerCache for values between -128 and 127. Autoboxing in this range reuses cached canonical references, so a == b is true. For 128, distinct Integer objects are allocated on the heap, so c == d compares different memory references, evaluating to false."
   },
   {
     "id": 11,
     "questionNumber": 11,
     "round": 2,
-    "category": "Java Interfaces",
-    "questionText": "Which of the following statements about Java interfaces is correct?",
+    "category": "DSA",
+    "questionText": "Which selection algorithm guarantees a strictly worst-case time complexity of O(N) to find the k-th smallest element in an unsorted array of N numbers?",
     "options": [
       {
         "id": "A",
-        "text": "A class can extend multiple classes but implement only one interface."
+        "text": "Randomized Quickselect"
       },
       {
         "id": "B",
-        "text": "A class can implement multiple interfaces."
+        "text": "Median of Medians (BFPRT algorithm)"
       },
       {
         "id": "C",
-        "text": "An interface can be instantiated directly using new."
+        "text": "IntroSelect"
       },
       {
         "id": "D",
-        "text": "An interface cannot contain any methods."
+        "text": "Binary Max-Heap Sort"
       }
     ],
     "correctOption": "B",
     "timeLimit": 120,
     "prizeValue": "₹1,300",
     "milestone": null,
-    "explanation": "Java allows a class to implement multiple interfaces, supporting multiple inheritance of type."
+    "explanation": "The Median of Medians (BFPRT) algorithm partitions elements into groups of 5 to find a deterministic pivot, yielding a recurrence T(N) <= T(N/5) + T(7N/10) + O(N). Because 1/5 + 7/10 = 9/10 < 1, it mathematically guarantees strictly O(N) worst-case time complexity. Randomized Quickselect has an O(N^2) worst case."
   },
   {
     "id": 12,
     "questionNumber": 12,
     "round": 2,
-    "category": "Computer History",
-    "questionText": "Which of the following is a famous historical fact about the first computer bug?",
+    "category": "Science",
+    "questionText": "In quantum computing and quantum physics, the No-Cloning Theorem mathematically proves that which of the following is strictly impossible?",
     "options": [
       {
         "id": "A",
-        "text": "It was caused by a virus named Bug 1."
+        "text": "Creating an identical independent copy of an arbitrary unknown quantum state"
       },
       {
         "id": "B",
-        "text": "It was a moth trapped in a computer relay."
+        "text": "Entangling two particles separated by light-years"
       },
       {
         "id": "C",
-        "text": "It was caused by a programmer forgetting a semicolon."
+        "text": "Constructing reversible quantum logic gates"
       },
       {
         "id": "D",
-        "text": "It was the first error in the Java compiler."
+        "text": "Measuring the polarization state of a photon"
       }
     ],
-    "correctOption": "B",
+    "correctOption": "A",
     "timeLimit": 120,
     "prizeValue": "₹1,600",
     "milestone": null,
-    "explanation": "A moth was found inside the Harvard Mark II computer in 1947, helping popularize the term debugging."
+    "explanation": "The No-Cloning Theorem (Wootters, Zurek, Dieks 1982) states that due to the linearity of quantum mechanics and unitary transformations, it is impossible to create an identical copy of an arbitrary unknown quantum state."
   },
   {
     "id": 13,
     "questionNumber": 13,
     "round": 2,
-    "category": "Internet",
-    "questionText": "Which of the following statements about the internet is correct?",
+    "category": "Python",
+    "questionText": "What will be printed by the following Python code?\n\nfuncs = [lambda x: x + i for i in range(3)]\nresults = [f(10) for f in funcs]\nprint(results)",
     "options": [
       {
         "id": "A",
-        "text": "The internet and the World Wide Web are exactly the same thing."
+        "text": "[10, 11, 12]"
       },
       {
         "id": "B",
-        "text": "The World Wide Web is a service that runs on the internet."
+        "text": "[12, 12, 12]"
       },
       {
         "id": "C",
-        "text": "The internet was invented after the World Wide Web."
+        "text": "[10, 10, 10]"
       },
       {
         "id": "D",
-        "text": "The World Wide Web can only be accessed using Google Chrome."
+        "text": "[13, 13, 13]"
       }
     ],
     "correctOption": "B",
     "timeLimit": 120,
     "prizeValue": "₹2,000",
     "milestone": null,
-    "explanation": "The internet is the underlying network, while the World Wide Web is a service that uses it."
+    "explanation": "In Python, closures use lexical late binding: variables in inner functions are resolved when called, not when defined. When the list comprehension finishes, the loop variable i equals 2. When the lambdas execute later, all three read i = 2, producing 10 + 2 = 12 for all three elements: [12, 12, 12]."
   },
   {
     "id": 14,
     "questionNumber": 14,
     "round": 2,
-    "category": "Computer History",
-    "questionText": "Which of the following is a famous historical fact about the first computer mouse?",
+    "category": "Who Am I?",
+    "questionText": "\"During World War II, I designed the electromechanical 'Bombe' machine at Bletchley Park to break the Enigma cipher. In 1936, I introduced an abstract theoretical machine that defines the fundamental limits of algorithmic computation. Who am I?\"",
     "options": [
       {
         "id": "A",
-        "text": "It was made entirely of plastic and had three buttons."
+        "text": "John von Neumann"
       },
       {
         "id": "B",
-        "text": "It was invented by Steve Jobs for the Apple Macintosh."
+        "text": "Alan Turing"
       },
       {
         "id": "C",
-        "text": "It was originally made of wood and had two wheels."
+        "text": "Claude Shannon"
       },
       {
         "id": "D",
-        "text": "It was designed by Microsoft for Windows."
+        "text": "Alonzo Church"
       }
     ],
-    "correctOption": "C",
+    "correctOption": "B",
     "timeLimit": 120,
     "prizeValue": "₹2,800",
     "milestone": null,
-    "explanation": "Douglas Engelbart’s early mouse prototype was made of wood and used two wheels to detect movement."
+    "explanation": "Alan Turing formulated the Turing machine in 1936, broke Nazi Enigma communications using the Bombe at Bletchley Park, and proposed the Turing Test for artificial intelligence."
   },
   {
     "id": 15,
     "questionNumber": 15,
     "round": 2,
-    "category": "Python / Recursion",
-    "questionText": "Consider the following Python code. What is the output?\n\ndef mystery(n):\n    if n <= 1:\n        return 1\n    return mystery(n - 1) + mystery(n - 2)\n\nprint(mystery(5))",
+    "category": "Java",
+    "questionText": "In standard HotSpot JVM architecture, which memory space stores compiled native machine code produced by the JIT (Just-In-Time) compiler, located entirely outside the Java Object Heap?",
     "options": [
       {
         "id": "A",
-        "text": "5"
+        "text": "Eden Space"
       },
       {
         "id": "B",
-        "text": "8"
+        "text": "Metaspace"
       },
       {
         "id": "C",
-        "text": "13"
+        "text": "Code Cache"
       },
       {
         "id": "D",
-        "text": "16"
+        "text": "Survivor Space (S0/S1)"
       }
     ],
-    "correctOption": "B",
+    "correctOption": "C",
     "timeLimit": 120,
     "prizeValue": "₹4,000",
     "milestone": "GRAND PRIZE",
-    "explanation": "The function follows a Fibonacci-like sequence with base cases of 1. mystery(5) evaluates to 8."
+    "explanation": "The Code Cache is a dedicated native memory region in HotSpot JVM reserved for compiled native machine code produced by the C1 and C2 JIT compilers. Metaspace stores class metadata, while Eden and Survivor spaces reside in the Young Generation of the Java Heap."
   }
 ];

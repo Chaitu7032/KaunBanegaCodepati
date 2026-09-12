@@ -226,6 +226,11 @@ export class GameEngine {
 
     this.currentQuestionIndex = 0;
     this.currentPrize = "₹0";
+    this.lifelines = {
+      fiftyFifty: { used: false, active: false },
+      askHost: { used: false, active: false, message: "" },
+      audiencePoll: { used: false, active: false, results: null },
+    };
     this.setupQuestion(0, true);
     this.logEvent("GAME_STARTED", {
       contestant: this.contestantName,
