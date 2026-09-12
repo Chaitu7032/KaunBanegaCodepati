@@ -51,7 +51,7 @@ export class GameEngine {
   reset() {
     this.status = "LOBBY"; // LOBBY | QUESTION_ACTIVE | ANSWER_SELECTED | ANSWER_LOCKED | REVEALED | LIFELINE_ACTIVE | PAUSED | TIMEOUT | ELIMINATED | WALKED_AWAY | FINISHED
     this.currentQuestionIndex = 0;
-    this.contestantName = this.contestants[this.activeContestantIndex]?.name || "Contestant";
+    this.contestantName = this.contestants[this.activeContestantIndex]?.name || "Contestant 1";
     this.currentPrize = "₹0";
 
     // Timer state
