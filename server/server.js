@@ -144,6 +144,31 @@ io.on("connection", (socket) => {
     broadcastState();
   });
 
+  socket.on("host:set_question_set", (setId) => {
+    engine.setQuestionSet(setId);
+    broadcastState();
+  });
+
+  socket.on("host:call_next_contestant", () => {
+    engine.callNextContestant();
+    broadcastState();
+  });
+
+  socket.on("host:switch_contestant", (index) => {
+    engine.switchToContestant(index);
+    broadcastState();
+  });
+
+  socket.on("host:update_roster", (roster) => {
+    engine.updateRoster(roster);
+    broadcastState();
+  });
+
+  socket.on("host:walk_away", () => {
+    engine.walkAway();
+    broadcastState();
+  });
+
   // Stage interactions (if participant clicks option directly on their screen)
   socket.on("stage:select_option", (optionId) => {
     engine.selectOption(optionId);

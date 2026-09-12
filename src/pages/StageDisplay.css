@@ -147,6 +147,46 @@
   color: #fff;
 }
 
+.stage-btn-icon--muted {
+  border-color: #ef4444;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.stage-btn-icon--muted:hover {
+  background: rgba(239, 68, 68, 0.25);
+  border-color: #ef4444;
+}
+
+/* Audio Autoplay Unlock Prompt Banner */
+.stage-audio-banner {
+  background: linear-gradient(90deg, rgba(217, 173, 75, 0.2) 0%, rgba(217, 173, 75, 0.35) 50%, rgba(217, 173, 75, 0.2) 100%);
+  border-bottom: 1px solid var(--gold-400);
+  padding: 0.5rem 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold-100);
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  animation: audio-glow 2s infinite alternate;
+}
+
+@keyframes audio-glow {
+  from { background-color: rgba(217, 173, 75, 0.15); box-shadow: 0 0 10px rgba(217, 173, 75, 0.2); }
+  to { background-color: rgba(217, 173, 75, 0.3); box-shadow: 0 0 20px rgba(217, 173, 75, 0.5); }
+}
+
+.stage-audio-banner:hover {
+  background-color: var(--gold-500);
+  color: #000;
+}
+
 /* Stage Main Layout */
 .stage-main {
   position: relative;
@@ -179,14 +219,15 @@
 .stage-timer {
   position: relative;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 90px;
+  width: 108px;
+  height: 108px;
   border-radius: 50%;
-  background: radial-gradient(circle, #0a1330 0%, #060b1a 100%);
-  border: 3px solid var(--gold-500);
-  box-shadow: 0 0 25px rgba(217, 173, 75, 0.3);
+  background: radial-gradient(circle, #0e1b42 0%, #060b1a 100%);
+  border: 3.5px solid var(--gold-500);
+  box-shadow: 0 0 30px rgba(217, 173, 75, 0.35);
   transition: all 0.3s ease;
 }
 
@@ -195,6 +236,21 @@
   font-size: 2.2rem;
   font-weight: 800;
   color: var(--gold-100);
+  line-height: 1;
+}
+
+.stage-timer__val--mmss {
+  font-size: 1.65rem;
+  letter-spacing: 0.05em;
+}
+
+.stage-timer__sublabel {
+  font-size: 0.55rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  color: var(--gold-400);
+  margin-top: 3px;
+  text-transform: uppercase;
 }
 
 .stage-timer--warning {
@@ -703,6 +759,94 @@
   color: var(--gold-300);
   font-weight: 600;
   font-size: 0.9rem;
+}
+
+.stage-status-icon {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+  animation: pop-icon 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes pop-icon {
+  from { transform: scale(0.3); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.stage-lobby--eliminated {
+  background: radial-gradient(circle at center, rgba(239, 68, 68, 0.15) 0%, transparent 70%);
+}
+
+.stage-lobby--walk {
+  background: radial-gradient(circle at center, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+}
+
+.stage-lobby__badge--pulse {
+  animation: pulse-badge 1.5s infinite;
+}
+
+@keyframes pulse-badge {
+  0%, 100% { border-color: rgba(217, 173, 75, 0.4); box-shadow: 0 0 10px rgba(217, 173, 75, 0.2); }
+  50% { border-color: #ef4444; box-shadow: 0 0 25px rgba(239, 68, 68, 0.5); }
+}
+
+/* Standings Modal */
+.stage-standings-modal {
+  max-width: 800px;
+  width: 90%;
+  background: #070d1e;
+  border: 2px solid var(--gold-500);
+  box-shadow: 0 0 50px rgba(217, 173, 75, 0.4);
+}
+
+.stage-standings-table {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.stage-standings-row {
+  display: grid;
+  grid-template-columns: 50px 1.5fr 80px 110px 120px 100px;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.85rem 1.25rem;
+  background: rgba(16, 28, 66, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  font-size: 0.95rem;
+}
+
+.stage-standings-row--head {
+  background: transparent;
+  border: none;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--gold-400);
+  padding: 0.4rem 1.25rem;
+  letter-spacing: 0.05em;
+}
+
+.stage-standings-row--active {
+  border-color: var(--gold-400);
+  background: rgba(217, 173, 75, 0.15);
+  box-shadow: 0 0 20px rgba(217, 173, 75, 0.2);
+}
+
+.stage-standings-prize {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--gold-300);
+  font-size: 1.1rem;
+}
+
+.stage-standings-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--ink-300);
 }
 
 /* Responsive */

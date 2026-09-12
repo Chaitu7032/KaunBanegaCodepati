@@ -17,12 +17,13 @@ export function GameProvider({ children, initialRole = "stage" }) {
 
   // Initialize BroadcastChannel & Socket.IO
   useEffect(() => {
-    // 1. BroadcastChannel for instant local multi-window synchronization
+    // 1. BroadcastChannel for offline fallback multi-window synchronization
     if (typeof window !== "undefined" && window.BroadcastChannel) {
       const bc = new BroadcastChannel(BROADCAST_CHANNEL_NAME);
       broadcastRef.current = bc;
       bc.onmessage = (event) => {
-        if (event.data?.type === "STATE_SYNC") {
+        // Only accept BroadcastChannel if not connected to live server socket
+        if (!socketRef.current?.connected && event.data?.type === "STATE_SYNC") {
           setGameState(event.data.state);
         }
       };
@@ -182,14 +183,31 @@ export function GameProvider({ children, initialRole = "stage" }) {
   const resolveLifeline = (type) => emit("host:resolve_lifeline", type);
   const resetGame = () => emit("host:reset_game");
   const setContestant = (name) => emit("host:set_contestant", name);
+  const setQuestionSet = (setId) => emit("host:set_question_set", setId);
+  const callNextContestant = () => emit("host:call_next_contestant");
+  const switchContestant = (index) => emit("host:switch_contestant", index);
+  const updateRoster = (roster) => emit("host:update_roster", roster);
+  const walkAway = () => emit("host:walk_away");
 
   // Fallback state if server is not yet up (e.g. offline testing)
+  const defaultContestants = [
+    { id: 1, rank: 1, name: "Contestant 1", status: "WAITING", finalPrize: "₹0", outAtQuestion: null, setId: 1 },
+    { id: 2, rank: 2, name: "Contestant 2", status: "WAITING", finalPrize: "₹0", outAtQuestion: null, setId: 2 },
+    { id: 3, rank: 3, name: "Contestant 3", status: "WAITING", finalPrize: "₹0", outAtQuestion: null, setId: 3 },
+    { id: 4, rank: 4, name: "Contestant 4", status: "WAITING", finalPrize: "₹0", outAtQuestion: null, setId: 4 },
+    { id: 5, rank: 5, name: "Contestant 5", status: "WAITING", finalPrize: "₹0", outAtQuestion: null, setId: 5 },
+  ];
+
   const effectiveState = gameState || {
     status: "LOBBY",
     currentQuestionIndex: 0,
     totalQuestions: DEFAULT_QUESTIONS.length,
     contestantName: "Contestant",
     currentPrize: "₹0",
+    activeSetId: 1,
+    availableSets: [1, 2, 3, 4, 5],
+    contestants: defaultContestants,
+    activeContestantIndex: 0,
     question: {
       ...DEFAULT_QUESTIONS[0],
       totalQuestions: DEFAULT_QUESTIONS.length,
@@ -246,6 +264,11 @@ export function GameProvider({ children, initialRole = "stage" }) {
         resolveLifeline,
         resetGame,
         setContestant,
+        setQuestionSet,
+        callNextContestant,
+        switchContestant,
+        updateRoster,
+        walkAway,
       }}
     >
       {children}

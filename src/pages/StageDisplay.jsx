@@ -2,16 +2,41 @@ import React, { useState } from "react";
 import { useGame } from "../context/GameContext";
 import { useGameAudioEvents } from "../hooks/useGameAudioEvents";
 import Starfield from "../components/Starfield";
+import { soundManager } from "../utils/soundManager";
 import "./StageDisplay.css";
+
+function formatTimer(seconds) {
+  if (seconds <= 0) return "00";
+  if (seconds < 60) {
+    return String(seconds).padStart(2, "0");
+  }
+  const mins = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}`;
+}
 
 export default function StageDisplay() {
   const { gameState, remainingSeconds, selectOption } = useGame();
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [showStandings, setShowStandings] = useState(false);
+  const [isMuted, setIsMuted] = useState(soundManager.isMuted);
+  const [isAudioUnlocked, setIsAudioUnlocked] = useState(soundManager.isUnlocked);
 
-  // Hook audio events architecture (listeners can be attached anytime)
+  const handleUnlockAudio = () => {
+    soundManager.unlockAudio();
+    setIsAudioUnlocked(true);
+  };
+
+  const handleToggleMute = () => {
+    handleUnlockAudio();
+    const newMuted = soundManager.toggleMute();
+    setIsMuted(newMuted);
+  };
+
+  // Hook audio events architecture
   useGameAudioEvents(gameState, remainingSeconds, {
     onQuestionStart: (q) => console.log("[Audio Event] Question started:", q?.questionNumber),
-    onTimerTick: (_sec) => { /* audio tick hook */ },
+    onTimerTick: (_sec) => {},
     onTimerWarning: () => console.log("[Audio Event] Timer warning!"),
     onTimerCritical: () => console.log("[Audio Event] Timer critical!"),
     onTimeout: () => console.log("[Audio Event] Timeout sound!"),
@@ -21,6 +46,7 @@ export default function StageDisplay() {
   });
 
   const toggleFullscreen = () => {
+    handleUnlockAudio();
     if (!document.fullscreenElement) {
       document.documentElement.requestFullscreen().catch(() => {});
       setIsFullscreen(true);
@@ -35,6 +61,9 @@ export default function StageDisplay() {
   const interaction = gameState.interaction || {};
   const lifelines = gameState.lifelines || {};
   const timer = gameState.timer || {};
+  const contestants = gameState.contestants || [];
+  const activeIdx = gameState.activeContestantIndex ?? 0;
+  const activeContestant = contestants[activeIdx] || { rank: 1, name: gameState.contestantName };
 
   // Timer style helper
   let timerClass = "stage-timer";
@@ -52,12 +81,10 @@ export default function StageDisplay() {
       return "stage-option--eliminated";
     }
 
-    if (status === "REVEALED") {
-      // In revealed state, highlight correct answer in green
+    if (status === "REVEALED" || status === "ELIMINATED") {
       if (optId === q?.correctOption) {
         return "stage-option--correct";
       }
-      // If player locked this option and it was wrong, mark it in red
       if (optId === interaction.lockedOption && !interaction.isCorrect) {
         return "stage-option--wrong";
       }
@@ -100,8 +127,10 @@ export default function StageDisplay() {
 
         <div className="stage-header__stats">
           <div className="stage-stat">
-            <span className="stage-stat__label">CONTESTANT</span>
-            <span className="stage-stat__val">{gameState.contestantName || "Hot Seat"}</span>
+            <span className="stage-stat__label">HOT SEAT</span>
+            <span className="stage-stat__val">
+              #{activeContestant.rank} {gameState.contestantName || "Contestant"}
+            </span>
           </div>
 
           <div className="stage-stat">
@@ -122,6 +151,26 @@ export default function StageDisplay() {
         <div className="stage-header__controls">
           <button
             type="button"
+            className={`stage-btn-icon ${isMuted ? "stage-btn-icon--muted" : ""}`}
+            onClick={handleToggleMute}
+            title={isMuted ? "Unmute Arena Audio" : "Mute Arena Audio"}
+            style={{ marginRight: "0.5rem" }}
+          >
+            {isMuted ? "🔇 AUDIO OFF" : "🔊 AUDIO ON"}
+          </button>
+
+          <button
+            type="button"
+            className="stage-btn-icon"
+            onClick={() => setShowStandings(!showStandings)}
+            title="Toggle Top 5 Standings"
+            style={{ marginRight: "0.5rem" }}
+          >
+            🏆 TOP 5 STANDINGS
+          </button>
+
+          <button
+            type="button"
             className="stage-btn-icon"
             onClick={toggleFullscreen}
             title="Toggle Fullscreen"
@@ -130,6 +179,13 @@ export default function StageDisplay() {
           </button>
         </div>
       </header>
+
+      {/* Browser Autoplay Unlock Banner */}
+      {!isAudioUnlocked && (
+        <div className="stage-audio-banner" onClick={handleUnlockAudio} role="button" tabIndex={0}>
+          <span>🔊</span> CLICK HERE OR PRESS FULLSCREEN TO UNLOCK ARENA SOUND EFFECTS &bull; 45S / 60S COUNTDOWNS
+        </div>
+      )}
 
       {/* LOBBY SCREEN */}
       {status === "LOBBY" && (
@@ -141,10 +197,50 @@ export default function StageDisplay() {
           />
           <h2>THE HOT SEAT ARENA</h2>
           <p>
-            Welcome to Kaun Banega Codepathi. Prepare your strategy, test your algorithmic speed, and claim your place on the leaderboard.
+            Welcoming Contestant #{activeContestant.rank} &bull; <strong>{gameState.contestantName}</strong> to the Hot Seat.
           </p>
           <div className="stage-lobby__badge">
-            <span>●</span> WAITING FOR HOST TO START
+            <span>●</span> WAITING FOR HOST TO START QUESTION 1
+          </div>
+        </main>
+      )}
+
+      {/* ELIMINATED SCREEN */}
+      {status === "ELIMINATED" && (
+        <main className="stage-lobby stage-lobby--eliminated">
+          <div className="stage-status-icon">❌</div>
+          <h2 style={{ color: "#ef4444" }}>HOT SEAT RUN CONCLUDED</h2>
+          <p>
+            Well played, <strong>{gameState.contestantName}</strong> (Participant #{activeContestant.rank})!
+          </p>
+          <div className="stage-stat" style={{ marginBottom: "1.5rem" }}>
+            <span className="stage-stat__label">GUARANTEED SAFE PRIZE WON</span>
+            <span className="stage-stat__val stage-stat__val--gold" style={{ fontSize: "2.5rem" }}>
+              {gameState.currentPrize || "₹0"}
+            </span>
+          </div>
+          <div className="stage-lobby__badge stage-lobby__badge--pulse">
+            <span>●</span> PREPARING NEXT CONTESTANT FOR HOT SEAT
+          </div>
+        </main>
+      )}
+
+      {/* WALKED AWAY SCREEN */}
+      {status === "WALKED_AWAY" && (
+        <main className="stage-lobby stage-lobby--walk">
+          <div className="stage-status-icon">💼</div>
+          <h2 className="gold-text">CONTESTANT DECIDED TO WALK AWAY</h2>
+          <p>
+            Strategic choice by <strong>{gameState.contestantName}</strong> (Participant #{activeContestant.rank})!
+          </p>
+          <div className="stage-stat" style={{ marginBottom: "1.5rem" }}>
+            <span className="stage-stat__label">FINAL BANKED PRIZE WON</span>
+            <span className="stage-stat__val stage-stat__val--gold" style={{ fontSize: "2.5rem" }}>
+              {gameState.currentPrize || "₹0"}
+            </span>
+          </div>
+          <div className="stage-lobby__badge">
+            <span>●</span> CALLING NEXT CONTESTANT TO HOT SEAT
           </div>
         </main>
       )}
@@ -157,28 +253,39 @@ export default function StageDisplay() {
             alt="Codepathi"
             className="stage-lobby__emblem"
           />
-          <h2>GAME CONCLUDED</h2>
+          <h2>EVENT CONCLUDED</h2>
           <p>
-            Congratulations <strong>{gameState.contestantName}</strong>! You have completed your journey in the Hot Seat.
+            Congratulations to all participants in Kaun Banega Codepathi!
           </p>
           <div className="stage-stat" style={{ marginBottom: "2rem" }}>
-            <span className="stage-stat__label">FINAL PRIZE WON</span>
+            <span className="stage-stat__label">FINAL CONTESTANT PRIZE</span>
             <span className="stage-stat__val stage-stat__val--gold" style={{ fontSize: "2.5rem" }}>
               {gameState.currentPrize || "₹0"}
             </span>
           </div>
+          <button
+            type="button"
+            className="stage-btn-icon"
+            onClick={() => setShowStandings(true)}
+            style={{ fontSize: "1rem", padding: "0.6rem 1.2rem" }}
+          >
+            VIEW FINAL LEADERBOARD 🏆
+          </button>
         </main>
       )}
 
       {/* ACTIVE GAMEPLAY SCREEN */}
-      {status !== "LOBBY" && status !== "FINISHED" && (
+      {status !== "LOBBY" && status !== "FINISHED" && status !== "ELIMINATED" && status !== "WALKED_AWAY" && (
         <main className="stage-main">
           <section className="stage-arena">
             {/* Timer HUD */}
             <div className="stage-timer-wrap">
               <div className={timerClass}>
-                <span className="stage-timer__val">
-                  {status === "TIMEOUT" ? "00" : String(remainingSeconds).padStart(2, "0")}
+                <span className={`stage-timer__val ${remainingSeconds >= 60 ? "stage-timer__val--mmss" : ""}`}>
+                  {status === "TIMEOUT" ? "00" : formatTimer(remainingSeconds)}
+                </span>
+                <span className="stage-timer__sublabel">
+                  {status === "TIMEOUT" ? "EXPIRED" : remainingSeconds >= 60 ? "MIN : SEC" : "SECONDS"}
                 </span>
               </div>
             </div>
@@ -241,7 +348,7 @@ export default function StageDisplay() {
           <aside className="stage-sidebar">
             <div className="stage-ladder-header">
               <h3 className="stage-ladder-title gold-text">HOT SEAT PRIZE LADDER</h3>
-              <span className="stage-ladder-subtitle">(15 QUESTIONS)</span>
+              <span className="stage-ladder-subtitle">(SET {gameState.activeSetId || 1} &bull; 15 QUESTIONS)</span>
             </div>
 
             <div className="stage-ladder-columns">
@@ -293,7 +400,7 @@ export default function StageDisplay() {
           <div className="stage-modal">
             <h3>LIFELINE: ASK THE HOST</h3>
             <p style={{ color: "var(--ink-300)", fontSize: "1.1rem" }}>
-              The timer is paused. The Hot Seat contestant is currently consulting with the Host.
+              The timer is paused. The Hot Seat contestant is currently consulting with the Quiz Master.
             </p>
           </div>
         </div>
@@ -318,6 +425,52 @@ export default function StageDisplay() {
                   </div>
                 );
               })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* MODAL OVERLAY: TOP 5 STANDINGS */}
+      {showStandings && (
+        <div className="stage-modal-overlay" onClick={() => setShowStandings(false)}>
+          <div className="stage-modal stage-standings-modal" onClick={(e) => e.stopPropagation()}>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1rem" }}>
+              <h3 className="gold-text" style={{ margin: 0, fontSize: "1.5rem" }}>
+                🏆 TOP 5 PARTICIPANTS STANDINGS
+              </h3>
+              <button
+                type="button"
+                className="stage-btn-icon"
+                onClick={() => setShowStandings(false)}
+              >
+                ✕
+              </button>
+            </div>
+            <p style={{ color: "var(--ink-300)", fontSize: "0.9rem", marginBottom: "1.25rem" }}>
+              Live leaderboard for the Hot Seat challengers
+            </p>
+            <div className="stage-standings-table">
+              <div className="stage-standings-row stage-standings-row--head">
+                <span>RANK</span>
+                <span>CONTESTANT</span>
+                <span>SET</span>
+                <span>PROGRESS</span>
+                <span>PRIZE WON</span>
+                <span>STATUS</span>
+              </div>
+              {contestants.map((c, idx) => (
+                <div
+                  key={c.id || idx}
+                  className={`stage-standings-row ${idx === activeIdx ? "stage-standings-row--active" : ""}`}
+                >
+                  <span style={{ fontWeight: "800", color: "var(--gold-400)" }}>#{c.rank}</span>
+                  <strong>{c.name}</strong>
+                  <span>Set {c.setId || c.rank}</span>
+                  <span>{c.outAtQuestion ? `Question ${c.outAtQuestion}` : "In Queue"}</span>
+                  <span className="stage-standings-prize">{c.finalPrize || "₹0"}</span>
+                  <span className="stage-standings-badge">{c.status}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>

@@ -1,275 +1,452 @@
-// Official Questions for Kaun Banega Codepathi
-// 15-Question Hot Seat Prize Ladder
-
 export const DEFAULT_QUESTIONS = [
   {
-    id: 1,
-    questionNumber: 1,
-    round: 1,
-    category: "Java",
-    questionText: "What is the output of the following Java code?\n\nint a = 10;\nint b = 3;\nSystem.out.println(a / b);",
-    options: [
-      { id: "A", text: "3.33" },
-      { id: "B", text: "3" },
-      { id: "C", text: "4" },
-      { id: "D", text: "3.0" },
+    "id": 1,
+    "questionNumber": 1,
+    "round": 1,
+    "category": "Java",
+    "questionText": "What is the output of the following Java code?\n\nint a = 10;\nint b = 3;\nSystem.out.println(a / b);",
+    "options": [
+      {
+        "id": "A",
+        "text": "3.33"
+      },
+      {
+        "id": "B",
+        "text": "3"
+      },
+      {
+        "id": "C",
+        "text": "4"
+      },
+      {
+        "id": "D",
+        "text": "3.0"
+      }
     ],
-    correctOption: "B",
-    timeLimit: 30,
-    prizeValue: "₹50",
-    milestone: null,
-    explanation: "Both operands are integers, so Java performs integer division. The result is 3.",
+    "correctOption": "B",
+    "timeLimit": 45,
+    "prizeValue": "₹50",
+    "milestone": null,
+    "explanation": "Both operands are integers, so Java performs integer division. The result is 3."
   },
   {
-    id: 2,
-    questionNumber: 2,
-    round: 1,
-    category: "Java",
-    questionText: "What is the output of this Java program?\n\nString s1 = \"Code\";\nString s2 = new String(\"Code\");\nSystem.out.println(s1 == s2);",
-    options: [
-      { id: "A", text: "true" },
-      { id: "B", text: "false" },
-      { id: "C", text: "Code" },
-      { id: "D", text: "Compilation error" },
+    "id": 2,
+    "questionNumber": 2,
+    "round": 1,
+    "category": "Java",
+    "questionText": "What is the output of this Java program?\n\nString s1 = \"Code\";\nString s2 = new String(\"Code\");\nSystem.out.println(s1 == s2);",
+    "options": [
+      {
+        "id": "A",
+        "text": "true"
+      },
+      {
+        "id": "B",
+        "text": "false"
+      },
+      {
+        "id": "C",
+        "text": "Code"
+      },
+      {
+        "id": "D",
+        "text": "Compilation error"
+      }
     ],
-    correctOption: "B",
-    timeLimit: 30,
-    prizeValue: "₹100",
-    milestone: null,
-    explanation: "The == operator compares object references. These strings are different objects, so the result is false.",
+    "correctOption": "B",
+    "timeLimit": 45,
+    "prizeValue": "₹100",
+    "milestone": null,
+    "explanation": "The == operator compares object references. These strings are different objects, so the result is false."
   },
   {
-    id: 3,
-    questionNumber: 3,
-    round: 1,
-    category: "OOP",
-    questionText: "Which OOP concept allows a child class to provide its own implementation of a method already defined in the parent class?",
-    options: [
-      { id: "A", text: "Encapsulation" },
-      { id: "B", text: "Inheritance" },
-      { id: "C", text: "Method overriding" },
-      { id: "D", text: "Abstraction" },
+    "id": 3,
+    "questionNumber": 3,
+    "round": 1,
+    "category": "OOP",
+    "questionText": "Which OOP concept allows a child class to provide its own implementation of a method already defined in the parent class?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Encapsulation"
+      },
+      {
+        "id": "B",
+        "text": "Inheritance"
+      },
+      {
+        "id": "C",
+        "text": "Method overriding"
+      },
+      {
+        "id": "D",
+        "text": "Abstraction"
+      }
     ],
-    correctOption: "C",
-    timeLimit: 30,
-    prizeValue: "₹150",
-    milestone: null,
-    explanation: "Method overriding allows a child class to redefine a method inherited from its parent class.",
+    "correctOption": "C",
+    "timeLimit": 45,
+    "prizeValue": "₹150",
+    "milestone": null,
+    "explanation": "Method overriding allows a child class to redefine a method inherited from its parent class."
   },
   {
-    id: 4,
-    questionNumber: 4,
-    round: 1,
-    category: "Python",
-    questionText: "Which of the following Python data types is immutable?",
-    options: [
-      { id: "A", text: "List" },
-      { id: "B", text: "Dictionary" },
-      { id: "C", text: "Set" },
-      { id: "D", text: "Tuple" },
+    "id": 4,
+    "questionNumber": 4,
+    "round": 1,
+    "category": "Python",
+    "questionText": "Which of the following Python data types is immutable?",
+    "options": [
+      {
+        "id": "A",
+        "text": "List"
+      },
+      {
+        "id": "B",
+        "text": "Dictionary"
+      },
+      {
+        "id": "C",
+        "text": "Set"
+      },
+      {
+        "id": "D",
+        "text": "Tuple"
+      }
     ],
-    correctOption: "D",
-    timeLimit: 30,
-    prizeValue: "₹200",
-    milestone: null,
-    explanation: "A tuple is immutable, meaning its elements cannot be changed after the tuple is created.",
+    "correctOption": "D",
+    "timeLimit": 45,
+    "prizeValue": "₹200",
+    "milestone": null,
+    "explanation": "A tuple is immutable, meaning its elements cannot be changed after the tuple is created."
   },
   {
-    id: 5,
-    questionNumber: 5,
-    round: 1,
-    category: "Python",
-    questionText: "Which of the following is a distinctive feature of Python that makes its code easier to read?",
-    options: [
-      { id: "A", text: "It requires every variable to be declared with a data type." },
-      { id: "B", text: "It uses indentation to define blocks of code." },
-      { id: "C", text: "It does not support functions." },
-      { id: "D", text: "It can only run on Linux." },
+    "id": 5,
+    "questionNumber": 5,
+    "round": 1,
+    "category": "Python",
+    "questionText": "Which of the following is a distinctive feature of Python that makes its code easier to read?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It requires every variable to be declared with a data type."
+      },
+      {
+        "id": "B",
+        "text": "It uses indentation to define blocks of code."
+      },
+      {
+        "id": "C",
+        "text": "It does not support functions."
+      },
+      {
+        "id": "D",
+        "text": "It can only run on Linux."
+      }
     ],
-    correctOption: "B",
-    timeLimit: 45,
-    prizeValue: "₹300",
-    milestone: "SAFE ZONE 1",
-    explanation: "Python uses indentation to define code blocks, making program structure visually clear.",
+    "correctOption": "B",
+    "timeLimit": 45,
+    "prizeValue": "₹300",
+    "milestone": "SAFE ZONE 1",
+    "explanation": "Python uses indentation to define code blocks, making program structure visually clear."
   },
   {
-    id: 6,
-    questionNumber: 6,
-    round: 1,
-    category: "DSA / Sliding Window",
-    questionText: "Given an array of integers, what is the best time complexity to find the maximum sum of any subarray of size K?",
-    options: [
-      { id: "A", text: "O(n²)" },
-      { id: "B", text: "O(n)" },
-      { id: "C", text: "O(n log n)" },
-      { id: "D", text: "O(k log n)" },
+    "id": 6,
+    "questionNumber": 6,
+    "round": 1,
+    "category": "DSA / Sliding Window",
+    "questionText": "Given an array of integers, what is the best time complexity to find the maximum sum of any subarray of size K?",
+    "options": [
+      {
+        "id": "A",
+        "text": "O(n²)"
+      },
+      {
+        "id": "B",
+        "text": "O(n)"
+      },
+      {
+        "id": "C",
+        "text": "O(n log n)"
+      },
+      {
+        "id": "D",
+        "text": "O(k log n)"
+      }
     ],
-    correctOption: "B",
-    timeLimit: 45,
-    prizeValue: "₹400",
-    milestone: null,
-    explanation: "Using the sliding window technique, the subarray sum can be updated in O(1) time per step, yielding an overall O(n) time complexity.",
+    "correctOption": "B",
+    "timeLimit": 60,
+    "prizeValue": "₹400",
+    "milestone": null,
+    "explanation": "Using the sliding window technique, the subarray sum can be updated in O(1) time per step, yielding an overall O(n) time complexity."
   },
   {
-    id: 7,
-    questionNumber: 7,
-    round: 1,
-    category: "Python History",
-    questionText: "Which of the following is a fun fact about Python?",
-    options: [
-      { id: "A", text: "Python was named after a type of snake." },
-      { id: "B", text: "Python was named after the British comedy group Monty Python." },
-      { id: "C", text: "Python was originally developed by Google." },
-      { id: "D", text: "Python was created as a replacement for Java." },
+    "id": 7,
+    "questionNumber": 7,
+    "round": 1,
+    "category": "Python History",
+    "questionText": "Which of the following is a fun fact about Python?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Python was named after a type of snake."
+      },
+      {
+        "id": "B",
+        "text": "Python was named after the British comedy group Monty Python."
+      },
+      {
+        "id": "C",
+        "text": "Python was originally developed by Google."
+      },
+      {
+        "id": "D",
+        "text": "Python was created as a replacement for Java."
+      }
     ],
-    correctOption: "B",
-    timeLimit: 45,
-    prizeValue: "₹500",
-    milestone: null,
-    explanation: "Python was named after the comedy series Monty Python’s Flying Circus.",
+    "correctOption": "B",
+    "timeLimit": 60,
+    "prizeValue": "₹500",
+    "milestone": null,
+    "explanation": "Python was named after the comedy series Monty Python’s Flying Circus."
   },
   {
-    id: 8,
-    questionNumber: 8,
-    round: 1,
-    category: "AI",
-    questionText: "In the term “ChatGPT”, what does the acronym GPT stand for?",
-    options: [
-      { id: "A", text: "Generative Pre-trained Transformer" },
-      { id: "B", text: "Generative Predictive Transformer" },
-      { id: "C", text: "General Pre-trained Transformer" },
-      { id: "D", text: "Generative Processing Technology" },
+    "id": 8,
+    "questionNumber": 8,
+    "round": 1,
+    "category": "AI",
+    "questionText": "In the term “ChatGPT”, what does the acronym GPT stand for?",
+    "options": [
+      {
+        "id": "A",
+        "text": "Generative Pre-trained Transformer"
+      },
+      {
+        "id": "B",
+        "text": "Generative Predictive Transformer"
+      },
+      {
+        "id": "C",
+        "text": "General Pre-trained Transformer"
+      },
+      {
+        "id": "D",
+        "text": "Generative Processing Technology"
+      }
     ],
-    correctOption: "A",
-    timeLimit: 45,
-    prizeValue: "₹600",
-    milestone: null,
-    explanation: "GPT stands for Generative Pre-trained Transformer: a model that generates text using a transformer architecture.",
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹600",
+    "milestone": null,
+    "explanation": "GPT stands for Generative Pre-trained Transformer: a model that generates text using a transformer architecture."
   },
   {
-    id: 9,
-    questionNumber: 9,
-    round: 1,
-    category: "Java",
-    questionText: "In Java, which keyword is used to prevent a class from being inherited?",
-    options: [
-      { id: "A", text: "static" },
-      { id: "B", text: "private" },
-      { id: "C", text: "final" },
-      { id: "D", text: "abstract" },
+    "id": 9,
+    "questionNumber": 9,
+    "round": 1,
+    "category": "Java",
+    "questionText": "In Java, which keyword is used to prevent a class from being inherited?",
+    "options": [
+      {
+        "id": "A",
+        "text": "static"
+      },
+      {
+        "id": "B",
+        "text": "private"
+      },
+      {
+        "id": "C",
+        "text": "final"
+      },
+      {
+        "id": "D",
+        "text": "abstract"
+      }
     ],
-    correctOption: "C",
-    timeLimit: 45,
-    prizeValue: "₹800",
-    milestone: null,
-    explanation: "A class declared final cannot be extended or inherited by another class.",
+    "correctOption": "C",
+    "timeLimit": 60,
+    "prizeValue": "₹800",
+    "milestone": null,
+    "explanation": "A class declared final cannot be extended or inherited by another class."
   },
   {
-    id: 10,
-    questionNumber: 10,
-    round: 2,
-    category: "Python",
-    questionText: "What is the output of the following Python code?\n\na = [1, 2, 3]\nb = a[:]\nb.append(4)\n\nprint(a)\nprint(b)",
-    options: [
-      { id: "A", text: "[1, 2, 3] and [1, 2, 3, 4]" },
-      { id: "B", text: "[1, 2, 3, 4] and [1, 2, 3, 4]" },
-      { id: "C", text: "[1, 2, 3, 4] and [4]" },
-      { id: "D", text: "Error" },
+    "id": 10,
+    "questionNumber": 10,
+    "round": 2,
+    "category": "Python",
+    "questionText": "What is the output of the following Python code?\n\na = [1, 2, 3]\nb = a[:]\nb.append(4)\n\nprint(a)\nprint(b)",
+    "options": [
+      {
+        "id": "A",
+        "text": "[1, 2, 3] and [1, 2, 3, 4]"
+      },
+      {
+        "id": "B",
+        "text": "[1, 2, 3, 4] and [1, 2, 3, 4]"
+      },
+      {
+        "id": "C",
+        "text": "[1, 2, 3, 4] and [4]"
+      },
+      {
+        "id": "D",
+        "text": "Error"
+      }
     ],
-    correctOption: "A",
-    timeLimit: 60,
-    prizeValue: "₹1,000",
-    milestone: "SAFE ZONE 2",
-    explanation: "The slice a[:] creates a new list. Therefore, appending to b does not change a.",
+    "correctOption": "A",
+    "timeLimit": 60,
+    "prizeValue": "₹1,000",
+    "milestone": "SAFE ZONE 2",
+    "explanation": "The slice a[:] creates a new list. Therefore, appending to b does not change a."
   },
   {
-    id: 11,
-    questionNumber: 11,
-    round: 2,
-    category: "Java Interfaces",
-    questionText: "Which of the following statements about Java interfaces is correct?",
-    options: [
-      { id: "A", text: "A class can extend multiple classes but implement only one interface." },
-      { id: "B", text: "A class can implement multiple interfaces." },
-      { id: "C", text: "An interface can be instantiated directly using new." },
-      { id: "D", text: "An interface cannot contain any methods." },
+    "id": 11,
+    "questionNumber": 11,
+    "round": 2,
+    "category": "Java Interfaces",
+    "questionText": "Which of the following statements about Java interfaces is correct?",
+    "options": [
+      {
+        "id": "A",
+        "text": "A class can extend multiple classes but implement only one interface."
+      },
+      {
+        "id": "B",
+        "text": "A class can implement multiple interfaces."
+      },
+      {
+        "id": "C",
+        "text": "An interface can be instantiated directly using new."
+      },
+      {
+        "id": "D",
+        "text": "An interface cannot contain any methods."
+      }
     ],
-    correctOption: "B",
-    timeLimit: 60,
-    prizeValue: "₹1,300",
-    milestone: null,
-    explanation: "Java allows a class to implement multiple interfaces, supporting multiple inheritance of type.",
+    "correctOption": "B",
+    "timeLimit": 120,
+    "prizeValue": "₹1,300",
+    "milestone": null,
+    "explanation": "Java allows a class to implement multiple interfaces, supporting multiple inheritance of type."
   },
   {
-    id: 12,
-    questionNumber: 12,
-    round: 2,
-    category: "Computer History",
-    questionText: "Which of the following is a famous historical fact about the first computer bug?",
-    options: [
-      { id: "A", text: "It was caused by a virus named Bug 1." },
-      { id: "B", text: "It was a moth trapped in a computer relay." },
-      { id: "C", text: "It was caused by a programmer forgetting a semicolon." },
-      { id: "D", text: "It was the first error in the Java compiler." },
+    "id": 12,
+    "questionNumber": 12,
+    "round": 2,
+    "category": "Computer History",
+    "questionText": "Which of the following is a famous historical fact about the first computer bug?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It was caused by a virus named Bug 1."
+      },
+      {
+        "id": "B",
+        "text": "It was a moth trapped in a computer relay."
+      },
+      {
+        "id": "C",
+        "text": "It was caused by a programmer forgetting a semicolon."
+      },
+      {
+        "id": "D",
+        "text": "It was the first error in the Java compiler."
+      }
     ],
-    correctOption: "B",
-    timeLimit: 60,
-    prizeValue: "₹1,600",
-    milestone: null,
-    explanation: "A moth was found inside the Harvard Mark II computer in 1947, helping popularize the term debugging.",
+    "correctOption": "B",
+    "timeLimit": 120,
+    "prizeValue": "₹1,600",
+    "milestone": null,
+    "explanation": "A moth was found inside the Harvard Mark II computer in 1947, helping popularize the term debugging."
   },
   {
-    id: 13,
-    questionNumber: 13,
-    round: 2,
-    category: "Internet",
-    questionText: "Which of the following statements about the internet is correct?",
-    options: [
-      { id: "A", text: "The internet and the World Wide Web are exactly the same thing." },
-      { id: "B", text: "The World Wide Web is a service that runs on the internet." },
-      { id: "C", text: "The internet was invented after the World Wide Web." },
-      { id: "D", text: "The World Wide Web can only be accessed using Google Chrome." },
+    "id": 13,
+    "questionNumber": 13,
+    "round": 2,
+    "category": "Internet",
+    "questionText": "Which of the following statements about the internet is correct?",
+    "options": [
+      {
+        "id": "A",
+        "text": "The internet and the World Wide Web are exactly the same thing."
+      },
+      {
+        "id": "B",
+        "text": "The World Wide Web is a service that runs on the internet."
+      },
+      {
+        "id": "C",
+        "text": "The internet was invented after the World Wide Web."
+      },
+      {
+        "id": "D",
+        "text": "The World Wide Web can only be accessed using Google Chrome."
+      }
     ],
-    correctOption: "B",
-    timeLimit: 60,
-    prizeValue: "₹2,000",
-    milestone: null,
-    explanation: "The internet is the underlying network, while the World Wide Web is a service that uses it.",
+    "correctOption": "B",
+    "timeLimit": 120,
+    "prizeValue": "₹2,000",
+    "milestone": null,
+    "explanation": "The internet is the underlying network, while the World Wide Web is a service that uses it."
   },
   {
-    id: 14,
-    questionNumber: 14,
-    round: 2,
-    category: "Computer History",
-    questionText: "Which of the following is a famous historical fact about the first computer mouse?",
-    options: [
-      { id: "A", text: "It was made entirely of plastic and had three buttons." },
-      { id: "B", text: "It was invented by Steve Jobs for the Apple Macintosh." },
-      { id: "C", text: "It was originally made of wood and had two wheels." },
-      { id: "D", text: "It was designed by Microsoft for Windows." },
+    "id": 14,
+    "questionNumber": 14,
+    "round": 2,
+    "category": "Computer History",
+    "questionText": "Which of the following is a famous historical fact about the first computer mouse?",
+    "options": [
+      {
+        "id": "A",
+        "text": "It was made entirely of plastic and had three buttons."
+      },
+      {
+        "id": "B",
+        "text": "It was invented by Steve Jobs for the Apple Macintosh."
+      },
+      {
+        "id": "C",
+        "text": "It was originally made of wood and had two wheels."
+      },
+      {
+        "id": "D",
+        "text": "It was designed by Microsoft for Windows."
+      }
     ],
-    correctOption: "C",
-    timeLimit: 60,
-    prizeValue: "₹2,800",
-    milestone: null,
-    explanation: "Douglas Engelbart’s early mouse prototype was made of wood and used two wheels to detect movement.",
+    "correctOption": "C",
+    "timeLimit": 120,
+    "prizeValue": "₹2,800",
+    "milestone": null,
+    "explanation": "Douglas Engelbart’s early mouse prototype was made of wood and used two wheels to detect movement."
   },
   {
-    id: 15,
-    questionNumber: 15,
-    round: 2,
-    category: "Python / Recursion",
-    questionText: "Consider the following Python code. What is the output?\n\ndef mystery(n):\n    if n <= 1:\n        return 1\n    return mystery(n - 1) + mystery(n - 2)\n\nprint(mystery(5))",
-    options: [
-      { id: "A", text: "5" },
-      { id: "B", text: "8" },
-      { id: "C", text: "13" },
-      { id: "D", text: "16" },
+    "id": 15,
+    "questionNumber": 15,
+    "round": 2,
+    "category": "Python / Recursion",
+    "questionText": "Consider the following Python code. What is the output?\n\ndef mystery(n):\n    if n <= 1:\n        return 1\n    return mystery(n - 1) + mystery(n - 2)\n\nprint(mystery(5))",
+    "options": [
+      {
+        "id": "A",
+        "text": "5"
+      },
+      {
+        "id": "B",
+        "text": "8"
+      },
+      {
+        "id": "C",
+        "text": "13"
+      },
+      {
+        "id": "D",
+        "text": "16"
+      }
     ],
-    correctOption: "B",
-    timeLimit: 60,
-    prizeValue: "₹4,000",
-    milestone: "GRAND PRIZE",
-    explanation: "The function follows a Fibonacci-like sequence with base cases of 1. mystery(5) evaluates to 8.",
-  },
+    "correctOption": "B",
+    "timeLimit": 120,
+    "prizeValue": "₹4,000",
+    "milestone": "GRAND PRIZE",
+    "explanation": "The function follows a Fibonacci-like sequence with base cases of 1. mystery(5) evaluates to 8."
+  }
 ];
